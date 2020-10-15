@@ -1,6 +1,6 @@
 # Archive tested prow deployment manifests
 This is from archive from kubernetes/test-infra/config/prow/cluster/starter-s3.yaml with modification for OpenShift use specific.
-## To deploy starter-s3.yaml
+## Deploy Prow with starter-s3.yaml
 Replace **`<<insert-token-here>>`** with your github(bot) token.  
 E.g Using sed to update the manifest
 ```bash
@@ -36,4 +36,10 @@ sed -i 's/<<CHANGE_ME_MINIO_SECRET_KEY>>/!!!YOUR_DESIRED_SECRET_KEY!!!/' starter
 After updated the manifest, apply the manifest to your cluster.
 ```bash
 oc apply -f starter-s3.yaml
+```
+## Deploy Tekton pipeline controller
+You will have to deploy Tekton yourself, you may deploy tekton from the OperatorHub.
+```bash
+oc apply -f pipeline_rbac.yaml
+oc apply -f pipeline_deployment.yaml
 ```
