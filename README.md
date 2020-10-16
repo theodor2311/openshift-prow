@@ -1,1 +1,1 @@
-# openshift-prow
+# Prow on OpenShift
