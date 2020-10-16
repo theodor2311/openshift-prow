@@ -38,8 +38,18 @@ After updated the manifest, apply the manifest to your cluster.
 oc apply -f starter-s3.yaml
 ```
 ## Deploy Tekton pipeline controller
-You will have to deploy Tekton yourself, you may deploy tekton from the OperatorHub.
+You will have to deploy Tekton yourself, you may deploy tekton from the OperatorHub.  
+* Tested with openshift-pipelines-operator.v1.1.1.  
+  
+Deploy the required RBAC related manifests.
 ```bash
 oc apply -f pipeline_rbac.yaml
+```
+At this archived version of pipeline controller required kubeconfig secret, you may use the following script to create the kubeconfig with the prow-pipeline service account in prow namespace.
+```bash
+./pipeline_create_kubeconfig.sh
+```
+Deploy the pipeline controller
+```bash 
 oc apply -f pipeline_deployment.yaml
 ```
